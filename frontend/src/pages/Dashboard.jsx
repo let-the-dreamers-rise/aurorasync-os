@@ -88,34 +88,40 @@ const Dashboard = () => {
   const generateMockPredictions = () => [
     {
       id: 1,
-      vehicle_id: 'VEH-0003',
+      vehicle_id: 'VEH001',
       component: 'Brake Pads',
       failure_probability: 0.82,
+      probability: 0.82,
       risk_level: 'high',
       confidence: 0.89,
       days_to_failure: 15,
+      days_until_failure: 15,
       recommended_action: 'Schedule immediate inspection and replacement',
       created_at: new Date().toISOString()
     },
     {
       id: 2,
-      vehicle_id: 'VEH-0007',
+      vehicle_id: 'VEH002',
       component: 'Battery',
       failure_probability: 0.65,
+      probability: 0.65,
       risk_level: 'medium',
       confidence: 0.85,
       days_to_failure: 30,
+      days_until_failure: 30,
       recommended_action: 'Monitor battery voltage and schedule replacement',
       created_at: new Date(Date.now() - 3600000).toISOString()
     },
     {
       id: 3,
-      vehicle_id: 'VEH-0012',
+      vehicle_id: 'VEH003',
       component: 'Alternator',
       failure_probability: 0.45,
+      probability: 0.45,
       risk_level: 'low',
       confidence: 0.78,
       days_to_failure: 60,
+      days_until_failure: 60,
       recommended_action: 'Include in next scheduled maintenance',
       created_at: new Date(Date.now() - 7200000).toISOString()
     }

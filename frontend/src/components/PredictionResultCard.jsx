@@ -10,23 +10,29 @@ const PredictionResultCard = ({ prediction, className }) => {
     vehicle_id,
     component,
     failure_probability,
+    probability,
     risk_level,
     days_to_failure,
+    days_until_failure,
     recommended_action,
     confidence,
     created_at,
   } = prediction
+  
+  // Use either field name for probability
+  const prob = failure_probability || probability || 0
+  const daysToFail = days_to_failure || days_until_failure || 0
 
   const getRiskColor = () => {
-    if (risk_level === 'critical' || failure_probability > 0.8) return 'text-aurora-status-critical'
-    if (risk_level === 'high' || failure_probability > 0.6) return 'text-aurora-status-warning'
-    if (risk_level === 'medium' || failure_probability > 0.4) return 'text-aurora-status-info'
+    if (risk_level === 'critical' || prob > 0.8) return 'text-aurora-status-critical'
+    if (risk_level === 'high' || prob > 0.6) return 'text-aurora-status-warning'
+    if (risk_level === 'medium' || prob > 0.4) return 'text-aurora-status-info'
     return 'text-aurora-status-healthy'
   }
 
   const getRiskIcon = () => {
-    if (failure_probability > 0.7) return AlertTriangle
-    if (failure_probability > 0.4) return Clock
+    if (prob > 0.7) return AlertTriangle
+    if (prob > 0.4) return Clock
     return CheckCircle
   }
 
@@ -37,7 +43,7 @@ const PredictionResultCard = ({ prediction, className }) => {
       <div className="flex items-start justify-between mb-4">
         <div className="flex items-center gap-3">
           <div className={cn('w-10 h-10 rounded-lg flex items-center justify-center', 
-            failure_probability > 0.7 ? 'bg-aurora-status-critical/20' : 'bg-aurora-bg-tertiary'
+            prob > 0.7 ? 'bg-aurora-status-critical/20' : 'bg-aurora-bg-tertiary'
           )}>
             <Brain className={cn('w-5 h-5', getRiskColor())} />
           </div>
@@ -56,7 +62,7 @@ const PredictionResultCard = ({ prediction, className }) => {
           <div className="flex items-center gap-2">
             <RiskIcon className={cn('w-4 h-4', getRiskColor())} />
             <span className={cn('text-2xl font-bold', getRiskColor())}>
-              {(failure_probability * 100).toFixed(1)}%
+              {(prob * 100).toFixed(1)}%
             </span>
           </div>
         </div>

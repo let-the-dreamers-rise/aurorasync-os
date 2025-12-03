@@ -11,8 +11,8 @@ const WorkshopLoadCard = ({ workshop, className }) => {
     ? location 
     : location?.city || location?.address || 'Location not specified'
 
-  const loadPercentage = (current_load / capacity) * 100
-  const forecastPercentage = (forecast_load / capacity) * 100
+  const loadPercentage = capacity > 0 ? (current_load / capacity) * 100 : 0
+  const forecastPercentage = capacity > 0 ? (forecast_load / capacity) * 100 : 0
 
   const getStatusColor = () => {
     if (loadPercentage >= 90) return 'text-aurora-status-critical'
