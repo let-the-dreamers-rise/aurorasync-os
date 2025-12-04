@@ -2,10 +2,12 @@
 Customer Engagement Agent - Handles customer communication via voice AI.
 """
 
-from typing import Dict, Any
+from typing import Dict, Any, TYPE_CHECKING
 
 from app.agents.base_agent import BaseAgent
-from app.voice_engine.voice_agent import VoiceAgent
+
+if TYPE_CHECKING:
+    from app.voice_engine.voice_agent import VoiceAgent
 
 
 class CustomerEngagementAgent(BaseAgent):
@@ -28,8 +30,16 @@ class CustomerEngagementAgent(BaseAgent):
     def __init__(self):
         """Initialize the Customer Engagement Agent."""
         super().__init__(name="customer_engagement")
-        self.voice_agent = VoiceAgent()
+        self._voice_agent = None  # Lazy initialization
         self.logger.info("📞 Customer Engagement Agent ready with Voice AI")
+    
+    @property
+    def voice_agent(self):
+        """Lazy load voice agent to avoid circular imports."""
+        if self._voice_agent is None:
+            from app.voice_engine.voice_agent import VoiceAgent
+            self._voice_agent = VoiceAgent()
+        return self._voice_agent
     
     def handle_event(self, event: Dict[str, Any]) -> Dict[str, Any]:
         """

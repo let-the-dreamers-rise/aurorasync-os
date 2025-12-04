@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Mic, Send, User, Bot, Volume2 } from 'lucide-react'
 import Card from '@/components/ui/Card'
@@ -15,12 +15,19 @@ const VoiceAI = () => {
   const [userInput, setUserInput] = useState('')
   const [scenario, setScenario] = useState('predicted_failure')
 
+  useEffect(() => {
+    document.title = 'Aurora - Your AI Companion | AuroraSync OS'
+    return () => {
+      document.title = 'AuroraSync OS | The Self-Healing Vehicle Brain'
+    }
+  }, [])
+
   const scenarios = [
-    { value: 'predicted_failure', label: 'Predicted Failure Alert' },
-    { value: 'urgent_alert', label: 'Urgent Critical Alert' },
-    { value: 'appointment_reminder', label: 'Appointment Reminder' },
-    { value: 'post_service_feedback', label: 'Post-Service Feedback' },
-    { value: 'booking_recovery', label: 'Booking Recovery' },
+    { value: 'predicted_failure', label: '🔮 Crystal Ball - Predict & Prevent', icon: '🔮' },
+    { value: 'urgent_alert', label: '🚨 Red Alert - Critical Response', icon: '🚨' },
+    { value: 'appointment_reminder', label: '⏰ Time Keeper - Friendly Nudge', icon: '⏰' },
+    { value: 'post_service_feedback', label: '⭐ Feedback Loop - Quality Check', icon: '⭐' },
+    { value: 'booking_recovery', label: '🎯 Second Chance - Win Back', icon: '🎯' },
   ]
 
   const handleStartConversation = async () => {
@@ -29,11 +36,11 @@ const VoiceAI = () => {
       
       // Use mock conversation directly for reliable demo
       const mockMessages = {
-        'predicted_failure': 'Namaste Rahul! This is Aurora from AutoCare. Our AI detected your Honda Accord brake system needs attention soon. The failure probability is 85%. Can I book a service appointment for you tomorrow at 10 AM at AutoCare Mumbai?',
-        'urgent_alert': 'Hello Rahul! This is urgent - your Honda Accord requires immediate attention. We detected a critical issue. Please bring your vehicle to AutoCare Mumbai as soon as possible.',
-        'appointment_reminder': 'Hi Rahul! Just a friendly reminder about your service appointment tomorrow at 10 AM at AutoCare Mumbai for your Honda Accord. Will you be able to make it?',
-        'post_service_feedback': 'Hello Rahul! Thank you for servicing your Honda Accord at AutoCare Mumbai. How was your experience? We would love to hear your feedback.',
-        'booking_recovery': 'Hi Rahul! I noticed you declined the service appointment. Is there a better time that works for you? We want to ensure your Honda Accord stays in great condition.'
+        'predicted_failure': '🔮 Namaste Rahul! This is Aurora, your vehicle\'s guardian angel. My crystal ball (aka AI sensors) detected your Honda Accord\'s brake system needs some TLC soon. The failure probability is 85% - not great odds! Can I book a service appointment for you tomorrow at 10 AM at AutoCare Mumbai? Let\'s prevent this before it becomes a problem!',
+        'urgent_alert': '🚨 RED ALERT! Rahul, this is Aurora with an urgent message about your Honda Accord. We\'ve detected a critical issue that needs immediate attention. Think of me as your vehicle\'s emergency hotline - please bring it to AutoCare Mumbai ASAP. Your safety is our priority!',
+        'appointment_reminder': '⏰ Hi Rahul! Your friendly neighborhood reminder bot here! Just checking in about your service appointment tomorrow at 10 AM at AutoCare Mumbai for your Honda Accord. Will you be able to make it? I promise we\'ll have chai ready for you!',
+        'post_service_feedback': '⭐ Hello Rahul! Aurora here, doing my quality check rounds. Thank you for servicing your Honda Accord at AutoCare Mumbai. How was your experience? Your feedback helps us get better - think of it as teaching an AI to be more awesome!',
+        'booking_recovery': '🎯 Hi Rahul! Aurora again - I noticed you declined the service appointment. No worries, life happens! Is there a better time that works for you? We want to ensure your Honda Accord stays in great condition. Let\'s find a slot that fits your schedule!'
       }
       
       setConversation({
@@ -73,14 +80,14 @@ const VoiceAI = () => {
       
       // Use mock response directly for reliable demo
       const mockResponses = {
-        'yes': 'Excellent! I have booked your appointment for tomorrow at 10 AM at AutoCare Mumbai. You will receive a confirmation SMS shortly. Is there anything else I can help you with?',
-        'no': 'I understand. Would you like me to suggest an alternative time? We have slots available this week.',
-        'reschedule': 'Of course! What time works better for you? We have availability throughout the week.',
-        'more': 'Based on our AI analysis, your brake pads are worn down to 2mm (critical level). This could lead to brake failure if not addressed soon. The service will take about 2 hours and costs approximately ₹5,000.',
-        'options': 'You have several options: 1) Book the recommended slot tomorrow at 10 AM, 2) Choose a different time this week, 3) Get a callback from our service advisor. What would you prefer?'
+        'yes': '🎉 Awesome! Your appointment is locked in for tomorrow at 10 AM at AutoCare Mumbai. You\'ll get a confirmation SMS faster than you can say "predictive maintenance"! Anything else I can help you with today?',
+        'no': '😊 No worries, I get it! Life gets busy. Would you like me to suggest some alternative times? We have slots available throughout the week - I\'m like a calendar ninja, I\'ll find something that works!',
+        'reschedule': '📅 Absolutely! Let\'s find a time that works better for you. We have availability throughout the week. Morning person? Night owl? Weekend warrior? I\'ve got options for everyone!',
+        'more': '🔍 Here\'s the technical scoop: Your brake pads are worn down to 2mm (that\'s critical level - think of it as your brakes running on fumes). If we don\'t fix this soon, you might experience brake failure. The service takes about 2 hours and costs approximately ₹5,000. Think of it as an investment in not crashing!',
+        'options': '🎯 You\'ve got choices! 1) Lock in tomorrow at 10 AM (the early bird special), 2) Pick a different time this week (we\'re flexible like yoga instructors), 3) Get a callback from our service advisor (the human touch). What sounds good to you?'
       }
       
-      let response = 'Thank you for your response. Our team will follow up with you shortly. Is there anything else I can help you with today?'
+      let response = '👍 Got it! Thanks for chatting with me. Our team will follow up with you shortly. In the meantime, is there anything else I can help you with today? I\'m here all day (perks of being an AI)!'
       
       const lowerInput = currentInput.toLowerCase()
       if (lowerInput.includes('yes') || lowerInput.includes('book')) {
@@ -117,14 +124,14 @@ const VoiceAI = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
       >
-        <h1 className="text-3xl font-bold gradient-text mb-2">AI Conversation Agent</h1>
+        <h1 className="text-3xl font-bold gradient-text mb-2">🌟 Aurora - Your AI Companion</h1>
         <p className="text-aurora-text-secondary">
-          Intelligent conversation flow for customer engagement • Production: Voice calls via TTS/STT
+          Your vehicle's guardian angel • Intelligent conversations powered by predictive AI
         </p>
-        <div className="mt-2 px-4 py-2 bg-aurora-accent-blue/10 border border-aurora-accent-blue/30 rounded-lg">
+        <div className="mt-2 px-4 py-2 bg-aurora-accent-purple/10 border border-aurora-accent-purple/30 rounded-lg">
           <p className="text-sm text-aurora-text-secondary">
-            💡 <span className="text-aurora-accent-cyan font-medium">Demo Mode:</span> This shows the AI conversation logic and flow. 
-            In production, this would be integrated with Text-to-Speech (TTS) for automated voice calls to customers.
+            ✨ <span className="text-aurora-accent-cyan font-medium">Meet Aurora:</span> Not your average AI - she's got personality, empathy, and a knack for keeping your vehicle healthy. 
+            In production, Aurora makes voice calls using Text-to-Speech for that human touch.
           </p>
         </div>
       </motion.div>

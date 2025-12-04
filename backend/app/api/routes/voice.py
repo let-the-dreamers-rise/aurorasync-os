@@ -5,6 +5,7 @@ Voice API routes for AuroraSync OS.
 from fastapi import APIRouter, HTTPException, UploadFile, File
 from pydantic import BaseModel, Field
 from typing import Dict, Any, Optional
+import logging
 
 from app.voice_engine.voice_agent import VoiceAgent
 from app.voice_engine.tts_provider import get_tts_provider
@@ -13,6 +14,7 @@ from app.voice_engine.flow_manager import get_flow_manager
 
 
 router = APIRouter()
+logger = logging.getLogger(__name__)
 
 # Initialize voice agent
 _voice_agent = None
@@ -127,6 +129,9 @@ def engage_voice(request: VoiceEngageRequest) -> Dict[str, Any]:
         return response
     
     except Exception as e:
+        import traceback
+        error_detail = f"Voice engagement failed: {str(e)}\n{traceback.format_exc()}"
+        logger.error(error_detail)
         raise HTTPException(
             status_code=500,
             detail=f"Voice engagement failed: {str(e)}"

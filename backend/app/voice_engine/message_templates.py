@@ -15,7 +15,7 @@ class MessageTemplates:
     
     # Predicted Failure Warning - Gentle Tone
     PREDICTED_FAILURE_GENTLE = {
-        "greeting": Template("Hello ${owner_name}, this is Aurora from your vehicle health monitoring system."),
+        "greeting": Template("🔮 Namaste ${owner_name}, this is Aurora - your vehicle's guardian angel and predictive maintenance wizard!"),
         "issue": Template(
             "We've detected some early signs of ${component} wear in your ${vehicle_model}. "
             "Our AI analysis shows a ${probability}% probability of potential issues developing "
@@ -38,11 +38,11 @@ class MessageTemplates:
             "We're here to keep your vehicle running smoothly. "
             "Can I go ahead and book this appointment for you?"
         )
-    },
+    }
     
     # Predicted Failure Warning - Urgent Tone
     PREDICTED_FAILURE_URGENT = {
-        "greeting": Template("Hello ${owner_name}, this is Aurora with an urgent alert about your ${vehicle_model}."),
+        "greeting": Template("🚨 RED ALERT! ${owner_name}, this is Aurora with a critical message about your ${vehicle_model}."),
         "issue": Template(
             "We've detected a critical ${component} issue that requires immediate attention. "
             "Our AI predicts a ${probability}% chance of failure within ${timeframe}."
@@ -62,11 +62,11 @@ class MessageTemplates:
         "closing": Template(
             "Shall I book this emergency service appointment for you right away?"
         )
-    },
+    }
     
     # Appointment Reminder
     APPOINTMENT_REMINDER = {
-        "greeting": Template("Hello ${owner_name}, this is Aurora calling about your upcoming service appointment."),
+        "greeting": Template("⏰ Hi ${owner_name}! Aurora here - your friendly neighborhood reminder bot!"),
         "reminder": Template(
             "Your ${vehicle_model} is scheduled for ${service_type} at ${workshop_name} "
             "on ${appointment_date} at ${appointment_time}."
@@ -82,11 +82,11 @@ class MessageTemplates:
             "Great! We'll see you ${appointment_date}. If anything changes, "
             "please call us at ${workshop_phone}."
         )
-    },
+    }
     
     # Declined Appointment Recovery
     BOOKING_RECOVERY = {
-        "greeting": Template("Hello ${owner_name}, I understand the ${original_slot} doesn't work for you."),
+        "greeting": Template("🎯 Hi ${owner_name}! Aurora again - I noticed the ${original_slot} didn't work out. No worries, life happens!"),
         "empathy": Template(
             "I completely understand scheduling can be challenging. "
             "Let me help you find a more convenient time."
@@ -107,11 +107,11 @@ class MessageTemplates:
         "closing": Template(
             "What would work best for you? I'm here to make this as easy as possible."
         )
-    },
+    }
     
     # Post-Service Feedback
     POST_SERVICE_FEEDBACK = {
-        "greeting": Template("Hello ${owner_name}, this is Aurora following up on your recent service."),
+        "greeting": Template("⭐ Hello ${owner_name}! Aurora here, doing my quality check rounds!"),
         "service_recap": Template(
             "Your ${vehicle_model} was serviced at ${workshop_name} on ${service_date} "
             "for ${service_type}."
@@ -131,7 +131,7 @@ class MessageTemplates:
             "Thank you for your feedback. We're continuously improving our service. "
             "Is there anything else I can help you with today?"
         )
-    },
+    }
     
     # Safety Check Question
     SAFETY_CHECK = {
@@ -149,7 +149,7 @@ class MessageTemplates:
             "which could lead to a breakdown or safety hazard. "
             "We recommend arranging a tow or pickup service."
         )
-    },
+    }
     
     # Cost Inquiry
     COST_INQUIRY = {
@@ -170,7 +170,7 @@ class MessageTemplates:
             "All repairs come with a ${warranty_period} warranty. "
             "We also offer flexible payment options if needed."
         )
-    },
+    }
     
     # Alternate Slot Offer
     ALTERNATE_SLOTS = {

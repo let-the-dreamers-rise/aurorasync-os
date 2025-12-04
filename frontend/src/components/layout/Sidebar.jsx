@@ -22,7 +22,7 @@ const Sidebar = () => {
     { path: '/vehicles', icon: Car, label: 'Vehicles' },
     { path: '/predictions', icon: Brain, label: 'Predictions' },
     { path: '/scheduling', icon: Calendar, label: 'Scheduling' },
-    { path: '/voice', icon: Mic, label: 'AI Conversations' },
+    { path: '/voice', icon: Mic, label: 'Aurora' },
     { path: '/workshops', icon: Wrench, label: 'Workshops' },
     { path: '/insights', icon: TrendingUp, label: 'RCA Insights' },
     { path: '/system', icon: Shield, label: 'System Health' },
